@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing and Throttling</title>
+</head>
+
+<body>
+    <h3>Default, Debouncing and Throttling behaviour</h3>
+    <form action="">
+        <label for="input">Input</label>
+        <input type="text" id="input" class="input" oninput="handleChange(this)">
+
+        <div>
+            <h2>Default</h2>
+            <p id="defaultText"></p>
+        </div>
+        <div>
+            <h2>Debouncing</h2>
+            <p id="DebounceText"></p>
+        </div>
+        <div>
+            <h2>Throttling</h2>
+            <p id="ThrottleText"></p>
+        </div>
+    </form>
+    <script>
+        let udebounce = debounce(cb, 3000);
+        let uthrottle = throttle(cb2, 3000);
+        function handleChange(e) {
+            defaultf(e);
+
+            udebounce(e.value);
+            uthrottle(e.value);
+        }
+        function defaultf(e) {
+            const defaultText = document.getElementById("defaultText").textContent = e.value;
+        }
+        function cb(v) {
+            document.getElementById("DebounceText").textContent = v;
+        }
+        function cb2(v) {
+            document.getElementById("ThrottleText").textContent = v;
+        }
+        
+        function throttle(cb2,delay) {
+            let start=false;
+        }
+        function debounce(cb, delay = 250) {
+            let timeout;
+
+
+            return (...args) => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    cb(...args);
+                }, delay)
+            }
+
+        }
+    </script>
+</body>
+
+</html>
